@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AiDialSdk.Api/AiDialSdk.Api.csproj" />
+  </Folder>
+</Solution>
