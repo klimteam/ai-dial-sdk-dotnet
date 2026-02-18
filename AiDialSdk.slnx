@@ -1,5 +1,9 @@
 <Solution>
+  <Folder Name="/examples/">
+    <Project Path="examples/EchoDialApp/EchoDialApp.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/AiDialSdk.Api/AiDialSdk.Api.csproj" />
+    <Project Path="src/AiDialSdk.Applications/AiDialSdk.Applications.csproj" />
   </Folder>
 </Solution>
