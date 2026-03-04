@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using AiDialSdk.Api.Extensions;
 
 namespace AiDialSdk.Api.Data;
