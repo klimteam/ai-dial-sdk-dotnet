@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using AiDialSdk.Api.JsonConverters.Internal;
 
 namespace AiDialSdk.Api.JsonConverters;
 
@@ -54,27 +53,10 @@ public class DictionaryModelJsonConverter<T> : JsonConverter<T>
             else
             {
                 var type = kvp.Value.GetType();
-
-                if (IsSimpleType(type))
-                {
-                    JsonSerializer.Serialize(writer, kvp.Value, type, options);
-                }
-                else
-                {
-                    writer.WriteStartObject();
-                    writer.WriteString(TypePropertyName, type.AssemblyQualifiedName);
-                    writer.WritePropertyName(ValuePropertyName);
-                    JsonSerializer.Serialize(writer, kvp.Value, type, options);
-                    writer.WriteEndObject();
-                }
+                JsonSerializer.Serialize(writer, kvp.Value, type, options);
             }
         }
 
         writer.WriteEndObject();
-    }
-    
-    private static bool IsSimpleType(Type type)
-    {
-        return type.IsEnum || JsonSimpleTypes.Value.Contains(type);
     }
 }
