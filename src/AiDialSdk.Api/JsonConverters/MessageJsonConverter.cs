@@ -19,6 +19,8 @@ public class MessageJsonConverter : JsonConverter<BaseMessage>
         {
             Role.Assistant => JsonSerializer.Deserialize<DialAssistantMessage>(root.GetRawText(), options) ??
                               throw new Exception($"Failed to deserialize {nameof(DialAssistantMessage)}"),
+            Role.Developer => JsonSerializer.Deserialize<DeveloperMessage>(root.GetRawText(), options) ??
+                           throw new Exception($"Failed to deserialize {nameof(DeveloperMessage)}"),
             Role.System => JsonSerializer.Deserialize<SystemMessage>(root.GetRawText(), options) ??
                            throw new Exception($"Failed to deserialize {nameof(SystemMessage)}"),
             Role.Tool => JsonSerializer.Deserialize<DialToolMessage>(root.GetRawText(), options) ??
