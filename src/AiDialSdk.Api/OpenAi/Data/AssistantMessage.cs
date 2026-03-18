@@ -5,9 +5,10 @@ namespace AiDialSdk.Api.OpenAi.Data;
 public class AssistantMessage : BaseMessage
 {
     [JsonConstructor]
-    public AssistantMessage(string? content = null, string? refusal = null, IReadOnlyList<ToolCall>? toolCalls = null) : base(Role.Assistant)
+    public AssistantMessage(string? content = null, string? name = null, string? refusal = null, IReadOnlyList<ToolCall>? toolCalls = null) : base(Role.Assistant)
     {
         Content = content;
+        Name = name;
         Refusal = refusal;
         ToolCalls = toolCalls;
     }
@@ -18,6 +19,8 @@ public class AssistantMessage : BaseMessage
     }
     
     public string? Content { get; }
+    
+    public string? Name { get; }
     
     public string? Refusal { get; }
 
