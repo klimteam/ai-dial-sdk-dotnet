@@ -1,5 +1,7 @@
 using AiDialSdk.Api.Chat;
 using AiDialSdk.Api.Chat.Implementations;
+using AiDialSdk.Api.Conversations;
+using AiDialSdk.Api.Conversations.Implementations;
 using AiDialSdk.Api.Files;
 using AiDialSdk.Api.Files.Implementations;
 using AiDialSdk.Api.Users;
@@ -33,5 +35,10 @@ public class DialApiClient : IDialApiClient
     public IDialFileApiClient GetFileApiClient()
     {
         return new DialFileApiClient(_httpClient, _endpoint, _apiKey);
+    }
+
+    public IDialConversationApiClient GetConversationApiClient()
+    {
+        return new DialConversationApiClient(_httpClient, _endpoint, _apiKey);
     }
 }
