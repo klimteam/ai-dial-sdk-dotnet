@@ -2,13 +2,13 @@ namespace AiDialSdk.Api.Infrastructure;
 
 public class DialClientConfiguration
 {
-    public Uri? Uri { get; set; }
+    public Uri? BaseUrl { get; set; }
     
     public string? ApiKey { get; set; }
     
-    public Uri GetUriOrThrow()
+    public Uri GetBaseUrlOrThrow()
     {
-        return Uri == null ? throw new ArgumentNullException(nameof(Uri), "Dial API URI is not set.") : Uri;
+        return BaseUrl == null ? throw new ArgumentNullException(nameof(BaseUrl), "Dial API base URL is not set.") : BaseUrl;
     }
     
     public string GetApiKeyOrThrow()
