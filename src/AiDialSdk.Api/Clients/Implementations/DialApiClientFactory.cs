@@ -16,6 +16,6 @@ public class DialApiClientFactory : IDialApiClientFactory
     
     public IDialApiClient CreateDialApiClient()
     {
-        return new DialApiClient(_httpClient, _configuration.GetUriOrThrow(), _configuration.GetApiKeyOrThrow());
+        throw new NotImplementedException();
     }
 }
