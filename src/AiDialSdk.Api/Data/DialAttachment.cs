@@ -4,7 +4,14 @@ namespace AiDialSdk.Api.Data;
 
 public class DialAttachment : ICombinableCollectionItem<DialAttachment>
 {
-    public DialAttachment(int index, string? type, string? title, string? data, string? url, string? referenceUrl, string? referenceType)
+    public DialAttachment(
+        int index, 
+        string? type = null,
+        string? title = null, 
+        string? data = null, 
+        string? url = null, 
+        string? referenceUrl = null, 
+        string? referenceType = null)
     {
         Index = index;
         Type = type;
