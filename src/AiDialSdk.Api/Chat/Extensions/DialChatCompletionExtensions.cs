@@ -11,7 +11,8 @@ public static class DialChatCompletionExtensions
             throw new NotSupportedException("Choice completion message role must be assistant");
         
         return new DialAssistantMessage(
-            dialChoiceCompletionMessage.Content, 
+            dialChoiceCompletionMessage.Content,
+            null,
             dialChoiceCompletionMessage.Refusal, 
             dialChoiceCompletionMessage.ToolCalls,
             dialChoiceCompletionMessage.CustomContent);

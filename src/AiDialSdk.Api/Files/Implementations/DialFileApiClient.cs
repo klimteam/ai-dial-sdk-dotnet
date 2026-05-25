@@ -11,7 +11,15 @@ public class DialFileApiClient : BaseApiClient, IDialFileApiClient
     public DialFileApiClient(HttpClient httpClient, Uri endpoint, string? apiKey) : base(httpClient, endpoint, apiKey)
     {
     }
-    
+
+    public async Task<Stream> GetDataAsync(string filePath, CancellationToken token)
+    {
+        var fileUrl = BuildFileUri(Endpoint, filePath);
+        var request = new HttpRequestMessage(HttpMethod.Get, fileUrl);
+        var response = await SendAsync(request, token);
+        return await response.Content.ReadAsStreamAsync(token);
+    }
+
     public async Task<PutFileResponse> StoreDataAsync(string fileName, Stream stream, CancellationToken token)
     {
         using var streamContent = new StreamContent(stream);
@@ -61,13 +69,14 @@ public class DialFileApiClient : BaseApiClient, IDialFileApiClient
 
     private static Uri BuildBucketUri(Uri endpoint)
     {
-        return new Uri($"{endpoint}/v1/bucket");
+        return new Uri($"{endpoint}v1/bucket");
     }
+
+    private static Uri BuildFileUri(Uri endpoint, string filePath) => 
+        new($"{endpoint}v1/{filePath}");
     
-    private static Uri BuildBucketJsonFileUri(Uri endpoint, string appData, string fileName)
-    {
-        return new Uri($"{endpoint}/v1/files/{appData}/{fileName}");
-    }
+    private static Uri BuildBucketJsonFileUri(Uri endpoint, string appData, string fileName) =>
+        new($"{endpoint}v1/files/{appData}/{fileName}");
     
     private static MultipartFormDataContent BuildFileUploadFormContent(HttpContent content, string fileName)
     {
