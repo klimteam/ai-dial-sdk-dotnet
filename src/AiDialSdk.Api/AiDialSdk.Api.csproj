@@ -7,7 +7,7 @@
         <LangVersion>default</LangVersion>
         
         <PackageId>AiDialSdk.Api</PackageId>
-        <Version>0.0.1-alpha.3</Version>
+        <Version>0.0.1-alpha.4</Version>
         <Authors>KlimTeam</Authors>
         <Description>Unofficial .NET SDK for DIAL platform</Description>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
