@@ -1,9 +1,11 @@
+using System.Text.Json.Serialization;
 using AiDialSdk.Api.Extensions;
 
 namespace AiDialSdk.Api.Data;
 
 public class DialAttachment : ICombinableCollectionItem<DialAttachment>
 {
+    [JsonConstructor]
     public DialAttachment(
         int index, 
         string? type = null,
@@ -20,6 +22,13 @@ public class DialAttachment : ICombinableCollectionItem<DialAttachment>
         Url = url;
         ReferenceUrl = referenceUrl;
         ReferenceType = referenceType;
+    }
+
+    public DialAttachment(string type, string title, string url)
+    {
+        Type = type;
+        Title = title;
+        Url = url;
     }
     
     public int Index { get; }
