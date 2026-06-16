@@ -4,12 +4,15 @@ namespace AiDialSdk.Api.Data;
 
 public class UserMessageCustomContent
 {
-    public UserMessageCustomContent(DialFormValue? formValue)
+    public UserMessageCustomContent(DialFormValue? formValue, IReadOnlyList<DialAttachment>? attachments)
     {
         FormValue = formValue;
+        Attachments = attachments;
     }
     
     public DialFormValue? FormValue { get; }
+    
+    public IReadOnlyList<DialAttachment>? Attachments { get; }
     
     [JsonIgnore]
     public bool HasFormValues => FormValue != null && FormValue.Any();
