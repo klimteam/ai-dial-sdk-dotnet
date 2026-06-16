@@ -1,11 +1,11 @@
 using AiDialSdk.Api.Data;
+using AiDialSdk.Applications.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
-using Models;
 
-namespace Implementations;
+namespace AiDialSdk.Applications.Implementations;
 
 public class CompletionInvoker : ICompletionInvoker
 {

@@ -4,7 +4,7 @@ using AiDialSdk.Api.Infrastructure;
 using AiDialSdk.Api.OpenAi.Data;
 using Microsoft.AspNetCore.Http;
 
-namespace Models;
+namespace AiDialSdk.Applications.Models;
 
 public class StreamApplicationResponse : BaseApplicationResponse, IApplicationResponse
 {

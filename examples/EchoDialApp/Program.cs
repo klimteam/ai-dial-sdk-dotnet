@@ -1,3 +1,4 @@
+using AiDialSdk.Applications;
 using EchoDialApp;
 
 var builder = WebApplication.CreateBuilder(args);

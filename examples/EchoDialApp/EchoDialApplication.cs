@@ -1,5 +1,6 @@
 using AiDialSdk.Api.Data;
 using AiDialSdk.Api.OpenAi.Data;
+using AiDialSdk.Applications;
 
 namespace EchoDialApp;
 

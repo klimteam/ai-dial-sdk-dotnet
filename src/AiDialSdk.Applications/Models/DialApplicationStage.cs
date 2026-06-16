@@ -2,7 +2,7 @@ using System.Text;
 using System.Text.Json;
 using AiDialSdk.Api.Data;
 
-namespace Models;
+namespace AiDialSdk.Applications.Models;
 
 public class DialApplicationStage : IAsyncDisposable, IDisposable
 {

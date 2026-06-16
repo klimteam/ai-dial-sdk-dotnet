@@ -1,11 +1,13 @@
 using AiDialSdk.Api.Clients;
-using Implementations;
-using Infrastructures;
+using AiDialSdk.Applications.Implementations;
+using AiDialSdk.Applications.Infrastructures;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+namespace AiDialSdk.Applications;
 
 public static class SdkExtensions
 {

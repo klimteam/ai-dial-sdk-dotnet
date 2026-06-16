@@ -1,4 +1,4 @@
-namespace Implementations;
+namespace AiDialSdk.Applications.Implementations;
 
 public class DialContextAccessor<TDialContext> : IDialContextAccessor<TDialContext>, IDialContextSetter<TDialContext>
     where TDialContext : BaseContext

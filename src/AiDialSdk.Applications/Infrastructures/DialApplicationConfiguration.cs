@@ -1,4 +1,4 @@
-namespace Infrastructures;
+namespace AiDialSdk.Applications.Infrastructures;
 
 public class DialApplicationConfiguration
 {

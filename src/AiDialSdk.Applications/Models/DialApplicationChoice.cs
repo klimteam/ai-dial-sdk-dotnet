@@ -1,6 +1,6 @@
 using AiDialSdk.Api.Data;
 
-namespace Models;
+namespace AiDialSdk.Applications.Models;
 
 public class DialApplicationChoice : ApplicationChoice
 {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Implementations;
+namespace AiDialSdk.Applications.Implementations;
 
 public class ConfigurationInvoker : IConfigurationInvoker
 {

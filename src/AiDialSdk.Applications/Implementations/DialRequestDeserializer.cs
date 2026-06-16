@@ -2,7 +2,7 @@ using AiDialSdk.Api.Data;
 using AiDialSdk.Api.Infrastructure;
 using Microsoft.AspNetCore.Http;
 
-namespace Implementations;
+namespace AiDialSdk.Applications.Implementations;
 
 public class DialRequestDeserializer : IDialRequestDeserializer
 {

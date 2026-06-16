@@ -1,7 +1,7 @@
 using AiDialSdk.Api.Data;
 using AiDialSdk.Api.OpenAi.Data;
 
-namespace Models;
+namespace AiDialSdk.Applications.Models;
 
 public interface IApplicationResponse
 {

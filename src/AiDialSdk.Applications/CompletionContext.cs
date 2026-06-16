@@ -1,6 +1,8 @@
 using AiDialSdk.Api.Data;
 using AiDialSdk.Api.OpenAi.Data;
-using Models;
+using AiDialSdk.Applications.Models;
+
+namespace AiDialSdk.Applications;
 
 public abstract class BaseContext
 {
