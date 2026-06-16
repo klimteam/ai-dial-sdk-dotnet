@@ -44,7 +44,8 @@ public static class GlobalJsonSettings
             new DictionaryModelJsonConverter<DialFormValue>(),
             new JsonStringEnumConverter(ConversationsPropertyNamingPolicy)
         },
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
     
     public static readonly JsonSerializerOptions ChatCompletionResponseJsonSerializerOptions = new()
