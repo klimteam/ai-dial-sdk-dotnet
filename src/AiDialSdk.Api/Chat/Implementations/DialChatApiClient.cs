@@ -62,10 +62,17 @@ public class DialChatApiClient : BaseApiClient, IDialChatApiClient
         };
         
         var response = await SendAsync(httpRequestMessage, token);
-        
+
         var responseContent = await response.Content.ReadAsStringAsync(token);
+
+        if (!response.IsSuccessStatusCode)
+            throw new HttpRequestException($"Chat completion request failed with status code {(int)response.StatusCode}: {responseContent}", null, response.StatusCode);
+
         var chatCompletion = JsonSerializer.Deserialize<DialChatCompletion>(responseContent, GlobalJsonSettings.ChatCompletionResponseJsonSerializerOptions)
                              ?? throw new NullReferenceException("Failed to deserialize ChatCompletion response.");
+
+        if (chatCompletion.Choices is not { Count: > 0 })
+            throw new InvalidOperationException($"Chat completion returned no choices. Response: {responseContent}");
         
         return chatCompletion;
     }

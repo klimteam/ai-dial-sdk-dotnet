@@ -34,7 +34,7 @@ public class CompletionInvoker : ICompletionInvoker
         {
             response.Headers.ContentType = new StringValues("text/event-stream");
         }
-
+        
         var completionContext = CreateChoiceCompletionContext(deploymentName, chatCompletionRequest, request, response);
         
         if (_dialContextAccessor is IDialContextSetter<BaseContext> setter)

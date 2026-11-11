@@ -42,6 +42,7 @@ public static class GlobalJsonSettings
             new DictionaryModelJsonConverter<DialState>(),
             new DictionaryModelJsonConverter<DialConfigurationValues>(),
             new DictionaryModelJsonConverter<DialFormValue>(),
+            new BaseControlJsonConverter(),
             new JsonStringEnumConverter(ConversationsPropertyNamingPolicy)
         },
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -58,6 +59,7 @@ public static class GlobalJsonSettings
             new MessageJsonConverter(),
             new ObjectJsonConverter(),
             new DictionaryModelJsonConverter<DialState>(),
+            new BaseControlJsonConverter(),
             new JsonStringEnumConverter(ConversationsPropertyNamingPolicy)
         },
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull

@@ -20,7 +20,7 @@ public abstract class BaseApiClient
         ConfigureRequestHeaders(httpRequestMessage);
         
         var response = await HttpClient.SendAsync(httpRequestMessage, token);
-        response.EnsureSuccessStatusCode();
+        //response.EnsureSuccessStatusCode();
         
         return response;
     }

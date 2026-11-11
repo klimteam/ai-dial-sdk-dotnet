@@ -12,28 +12,26 @@ namespace AiDialSdk.Api.Clients.Implementations;
 public class DialApiClient : IDialApiClient
 {
     private readonly HttpClient _httpClient;
-    private readonly Uri _endpoint;
-    private readonly string? _apiKey;
+    private readonly DialClientConfiguration _configuration;
     
     public DialApiClient(HttpClient httpClient, IOptions<DialClientConfiguration> configuration)
     {
         _httpClient = httpClient;
-        _endpoint = configuration.Value.GetBaseUrlOrThrow();
-        _apiKey = configuration.Value.ApiKey;
+        _configuration = configuration.Value;
     }
     
     public IDialChatApiClient GetChatClient(string deploymentName, string? apiVersion = null)
     {
-        return new DialChatApiClient(_httpClient, _endpoint, _apiKey, deploymentName, apiVersion);
+        return new DialChatApiClient(_httpClient, _configuration.GetBaseUrlOrThrow(), _configuration.ApiKey, deploymentName, apiVersion);
     }
 
     public IDialUserApiClient GetUserApiClient()
     {
-        return new DialUserApiClient(_httpClient, _endpoint, _apiKey);
+        return new DialUserApiClient(_httpClient, _configuration.GetBaseUrlOrThrow(), _configuration.ApiKey);
     }
 
     public IDialFileApiClient GetFileApiClient()
     {
-        return new DialFileApiClient(_httpClient, _endpoint, _apiKey);
+        return new DialFileApiClient(_httpClient, _configuration.GetBaseUrlOrThrow(), _configuration.ApiKey);
     }
 }

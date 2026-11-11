@@ -4,21 +4,12 @@ namespace AiDialSdk.Api.OpenAi.Data;
 
 public class ResponseFormatJsonSchema : ResponseFormat
 {
-    public ResponseFormatJsonSchema(string name, JsonElement schema, string? description, bool? strict)
+    public ResponseFormatJsonSchema(JsonSchema jsonSchema)
     {
-        Name = name;
-        Schema = schema;
-        Description = description;
-        Strict = strict;
+        JsonSchema = jsonSchema;
     }
     
-    public string Name { get; }
-    
-    public JsonElement Schema { get; }
-    
-    public string? Description { get; }
-    
-    public bool? Strict { get; }
+    public JsonSchema JsonSchema { get; }
     
     public override ResponseFormatType Type => ResponseFormatType.JsonSchema;
 }

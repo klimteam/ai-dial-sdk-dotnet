@@ -3,7 +3,7 @@ using AiDialSdk.Api.Extensions;
 
 namespace AiDialSdk.Api.Data;
 
-public class DialFormSchema
+public class DialFormSchema : IObjectSchema
 {
     [JsonConstructor]
     public DialFormSchema(bool chatMessageInputDisabled, IReadOnlyDictionary<string, AiDialBaseControl> properties, IReadOnlyCollection<string> required)
@@ -14,7 +14,7 @@ public class DialFormSchema
     }
  
     public DialFormSchema(bool chatMessageInputDisabled, IReadOnlyDictionary<string, AiDialBaseControl> properties) 
-        : this(chatMessageInputDisabled, properties, [])
+        : this(chatMessageInputDisabled, properties, Array.Empty<string>())
     {
     }
     
@@ -37,7 +37,7 @@ public class DialFormSchema
             Required.Combine(other.Required) ?? Array.Empty<string>());
     }
     
-    public static DialFormSchema EmptyChatEnabled { get; } = new(false, new Dictionary<string, AiDialBaseControl>(),Array.Empty<string>());
+    public static DialFormSchema EmptyChatEnabled { get; } = new(false, new Dictionary<string, AiDialBaseControl>(),[]);
     
-    public static DialFormSchema EmptyChatDisabled { get; } = new(true, new Dictionary<string, AiDialBaseControl>(),Array.Empty<string>());
+    public static DialFormSchema EmptyChatDisabled { get; } = new(true, new Dictionary<string, AiDialBaseControl>(),[]);
 }

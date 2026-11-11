@@ -2,9 +2,9 @@ namespace AiDialSdk.Api.Infrastructure;
 
 public class DialClientConfiguration
 {
-    public Uri? BaseUrl { get; set; }
+    public Uri? BaseUrl { get; init; }
     
-    public string? ApiKey { get; set; }
+    public string? ApiKey { get; init; }
     
     public Uri GetBaseUrlOrThrow()
     {

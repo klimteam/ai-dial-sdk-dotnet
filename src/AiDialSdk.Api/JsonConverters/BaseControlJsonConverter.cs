@@ -11,17 +11,21 @@ public class BaseControlJsonConverter : JsonConverter<AiDialBaseControl>
         using var jsonMessage = JsonDocument.ParseValue(ref reader);
         var root = jsonMessage.RootElement;
 
-        if (Enum.TryParse<AiDialWidgetType>(root.GetProperty("dial:widget").GetString(), true, out var widgetType))
+        if (root.TryGetProperty("dial:widget", out var widgetProperty) &&
+            Enum.TryParse<AiDialWidgetType>(widgetProperty.GetString(), true, out var widgetType))
         {
             return widgetType switch
             {
-                AiDialWidgetType.Buttons => JsonSerializer.Deserialize<AiDialButton>(root.GetRawText(), options) ??
-                                            throw new Exception($"Failed to deserialize {nameof(AiDialButton)}"),
+                AiDialWidgetType.Buttons => JsonSerializer.Deserialize<AiDialButtons>(root.GetRawText(), options) ??
+                                            throw new Exception($"Failed to deserialize {nameof(AiDialButtons)}"),
+                AiDialWidgetType.Form => JsonSerializer.Deserialize<AiDialForm>(root.GetRawText(), options) ??
+                                         throw new Exception($"Failed to deserialize {nameof(AiDialForm)}"),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-        
-        throw new Exception("Failed to deserialize BaseControl");
+
+        return JsonSerializer.Deserialize<AiDialInputControl>(root.GetRawText(), options) ??
+               throw new Exception($"Failed to deserialize {nameof(AiDialInputControl)}");
     }
 
     public override void Write(Utf8JsonWriter writer, AiDialBaseControl value, JsonSerializerOptions options)

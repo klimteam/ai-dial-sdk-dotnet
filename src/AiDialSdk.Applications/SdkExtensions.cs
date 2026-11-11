@@ -11,6 +11,29 @@ namespace AiDialSdk.Applications;
 
 public static class SdkExtensions
 {
+    public static WebApplicationBuilder AddApplicationDialApiClient(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddHttpClient();
+        builder.Services.Configure<DialApplicationConfiguration>(builder.Configuration.GetSection(nameof(DialApplicationConfiguration)));
+        builder.Services.AddScoped<IDialApiClientFactory, DialApplicationApiClientFactory<BaseContext>>();
+        builder.Services.AddScoped<IDialApiClient>(sp => sp.GetRequiredService<IDialApiClientFactory>().CreateDialApiClient());
+        return builder;
+    }
+    
+    public static WebApplicationBuilder AddDialApplication<TDialApplication>(this WebApplicationBuilder builder)
+        where TDialApplication : class, IDialApplication
+    {
+        builder.Services.AddScoped<IDialContextAccessor<BaseContext>, DialContextAccessor<BaseContext>>();
+        
+        builder.Services.AddScoped<IDialRequestDeserializer, DialRequestDeserializer>();
+        builder.Services.AddScoped<ICompletionInvoker, CompletionInvoker>();
+        builder.Services.AddScoped<IConfigurationInvoker, ConfigurationInvoker>();
+
+        builder.Services.AddScoped<IDialApplication, TDialApplication>();
+        
+        return builder;
+    }
+    
     public static IServiceCollection AddApplicationDialApiClient(this IServiceCollection services, IConfigurationManager configurationManager)
     {
         services.AddHttpClient();

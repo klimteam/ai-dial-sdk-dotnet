@@ -1,4 +1,6 @@
 using AiDialSdk.Api.Clients;
+using AiDialSdk.Api.Clients.Implementations;
+using AiDialSdk.Api.Infrastructure;
 using AiDialSdk.Applications.Infrastructures;
 using Microsoft.Extensions.Options;
 
@@ -24,6 +26,14 @@ public class DialApplicationApiClientFactory<TDialContext> : IDialApiClientFacto
     
     public IDialApiClient CreateDialApiClient()
     {
-        throw new NotImplementedException();
+        var httpClient = _httpClientFactory.CreateClient(DialApiClientName);
+        
+        var dialClientConfiguration = Options.Create(new DialClientConfiguration
+        {
+            BaseUrl = _configuration.GetUriOrThrow(),
+            ApiKey =  _contextAccessor.Context.ApiKey
+        });    
+        
+        return new DialApiClient(httpClient, dialClientConfiguration);
     }
 }
