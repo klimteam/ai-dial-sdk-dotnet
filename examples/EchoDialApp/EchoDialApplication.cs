@@ -1,5 +1,4 @@
 using AiDialSdk.Api.Data;
-using AiDialSdk.Api.OpenAi.Data;
 using AiDialSdk.Applications;
 
 namespace EchoDialApp;
@@ -9,15 +8,18 @@ public class EchoDialApplication : IDialApplication
     public async Task CompleteChoicesAsync(DialChoiceCompletionContext completionContext, CancellationToken token)
     {
         var choice = completionContext.Choices.Single();
-
-        if (completionContext.ChatCompletionRequest.Messages.Last() is UserMessage message)
+        var inputMessage = completionContext.ChatCompletionRequest.Messages.LastOrDefault();
+        
+        if (inputMessage is not DialUserMessage dialUserMessage)
         {
-            await choice.AppendContentAsync(message.Content, token);
+            return;
         }
+        
+        await choice.AppendContentAsync(dialUserMessage.Content, token);
     }
 
     public Task<DialFormSchema> GetConfigurationAsync(CancellationToken token)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(DialFormSchema.EmptyChatEnabled);
     }
 }

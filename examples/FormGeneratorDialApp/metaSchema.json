@@ -1,0 +1,118 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the form shown to the user."
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of what the form is for."
+    },
+    "chatMessageInputDisabled": {
+      "type": "boolean",
+      "description": "Set true to disable the chat message input while the form is displayed."
+    },
+    "fields": {
+      "type": "array",
+      "description": "List of form fields.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Machine name of the field, used as the key in the submitted data."
+          },
+          "type": {
+            "type": "string",
+            "enum": ["string", "number", "integer", "boolean"],
+            "description": "Field type: 'string' renders a text input, 'number'/'integer' render a number input, 'boolean' renders a checkbox. A string field with 'enum' renders a select."
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable label of the field."
+          },
+          "description": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "null" }
+            ],
+            "description": "Optional helper text shown under the field."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the field must be filled in."
+          },
+          "default": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "number" },
+              { "type": "integer" },
+              { "type": "boolean" },
+              { "type": "null" }
+            ],
+            "description": "Optional default value. Must match the field type."
+          },
+          "minLength": {
+            "anyOf": [
+              { "type": "integer" },
+              { "type": "null" }
+            ],
+            "description": "For string fields: minimum length."
+          },
+          "maxLength": {
+            "anyOf": [
+              { "type": "integer" },
+              { "type": "null" }
+            ],
+            "description": "For string fields: maximum length."
+          },
+          "minimum": {
+            "anyOf": [
+              { "type": "number" },
+              { "type": "null" }
+            ],
+            "description": "For number/integer fields: minimum value."
+          },
+          "maximum": {
+            "anyOf": [
+              { "type": "number" },
+              { "type": "null" }
+            ],
+            "description": "For number/integer fields: maximum value."
+          },
+          "pattern": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "null" }
+            ],
+            "description": "For string fields: regular expression the value must match."
+          },
+          "format": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "null" }
+            ],
+            "description": "For string fields: e.g. 'date-time', 'email', 'uri'."
+          },
+          "enum": {
+            "anyOf": [
+              {
+                "type": "array",
+                "description": "For string fields: list of allowed values, renders a select dropdown. Values must be strings.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["name", "type", "title", "description", "required", "default", "minLength", "maxLength", "minimum", "maximum", "pattern", "format", "enum"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["title", "description", "chatMessageInputDisabled", "fields"],
+  "additionalProperties": false
+}
