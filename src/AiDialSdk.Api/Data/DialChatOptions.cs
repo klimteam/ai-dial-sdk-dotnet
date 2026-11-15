@@ -21,4 +21,8 @@ public class DialChatOptions
     public List<Tool>? Tools { get; set; }
     
     public DialRequestCustomFields? CustomFields { get; set; }
+    
+    public IReadOnlyList<string>? Stop { get; set; }
+    
+    public IReadOnlyDictionary<string, int>? LogitBias { get; set; }
 }

@@ -27,10 +27,12 @@ public class DialChatCompletionRequest : ChatCompletionRequest
         IReadOnlyList<Tool>? tools = null,
         bool? parallelToolCalls = null,
         string? user = null,
+        IReadOnlyList<string>? stop = null,
+        IReadOnlyDictionary<string, int>? logitBias = null,
         DialRequestCustomFields? customFields = null)
         : base(messages, model, store, metadata, frequencyPenalty, maxTokens, maxPromptTokens, maxCompletionTokens, n, 
             presencePenalty, responseFormat, seed, serviceTier, stream, temperature, topP, toolChoice, tools, 
-            parallelToolCalls, user)
+            parallelToolCalls, user, stop, logitBias)
     {
         CustomFields = customFields;
     }
@@ -44,7 +46,8 @@ public class DialChatCompletionRequest : ChatCompletionRequest
             maxCompletionTokens: chatOptions.MaxCompletionTokens, n: null, presencePenalty: null, 
             responseFormat: chatOptions.ResponseFormat, seed: chatOptions.Seed, serviceTier: null, 
             stream: chatOptions.Stream, temperature: chatOptions.Temperature, topP: chatOptions.TopP,
-            toolChoice: chatOptions.ToolChoice, tools: chatOptions.Tools, parallelToolCalls: null, user: null)
+            toolChoice: chatOptions.ToolChoice, tools: chatOptions.Tools, parallelToolCalls: null, user: null,
+            stop: chatOptions.Stop, logitBias: chatOptions.LogitBias)
     {
         CustomFields = chatOptions.CustomFields;
     }

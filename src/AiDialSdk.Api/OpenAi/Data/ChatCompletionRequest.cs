@@ -22,7 +22,9 @@ public class ChatCompletionRequest
         ToolChoiceMode? toolChoice = null,
         IReadOnlyList<Tool>? tools = null, 
         bool? parallelToolCalls = null, 
-        string? user = null)
+        string? user = null,
+        IReadOnlyList<string>? stop = null,
+        IReadOnlyDictionary<string, int>? logitBias = null)
     {
         Messages = messages;
         Model = model;
@@ -44,6 +46,8 @@ public class ChatCompletionRequest
         Tools = tools;
         ParallelToolCalls = parallelToolCalls;
         User = user;
+        Stop = stop;
+        LogitBias = logitBias;
     }
     
     public IReadOnlyList<BaseMessage> Messages { get; }
@@ -85,4 +89,8 @@ public class ChatCompletionRequest
     public bool? ParallelToolCalls { get; }
     
     public string? User { get; }
+    
+    public IReadOnlyList<string>? Stop { get; }
+    
+    public IReadOnlyDictionary<string, int>? LogitBias { get; }
 }
