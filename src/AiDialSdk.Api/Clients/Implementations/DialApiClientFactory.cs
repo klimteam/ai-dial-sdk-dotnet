@@ -6,16 +6,16 @@ namespace AiDialSdk.Api.Clients.Implementations;
 public class DialApiClientFactory : IDialApiClientFactory
 {
     private readonly HttpClient _httpClient;
-    private readonly DialClientConfiguration _configuration;
+    private readonly IOptions<DialClientConfiguration> _configuration;
 
     public DialApiClientFactory(HttpClient httpClient, IOptions<DialClientConfiguration> configuration)
     {
         _httpClient = httpClient;
-        _configuration = configuration.Value;
+        _configuration = configuration;
     }
     
     public IDialApiClient CreateDialApiClient()
     {
-        throw new NotImplementedException();
+        return new DialApiClient(_httpClient, _configuration);
     }
 }
