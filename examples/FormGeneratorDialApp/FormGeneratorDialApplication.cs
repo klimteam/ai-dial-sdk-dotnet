@@ -21,7 +21,7 @@ public class FormGeneratorDialApplication : IDialApplication
     {
         var choice = completionContext.Choices.Single();
         
-        const string deploymentName = "gpt-5.4";
+        const string deploymentName = "glm-5.3-flash";
         
         var client = _dialApiClient.GetChatClient(deploymentName, "2024-06-01-preview");
         
@@ -64,6 +64,6 @@ public class FormGeneratorDialApplication : IDialApplication
 
     public Task<DialFormSchema> GetConfigurationAsync(CancellationToken token)
     {
-        throw new NotImplementedException();
+        return Task.FromResult(DialFormSchema.EmptyChatEnabled);
     }
 }
